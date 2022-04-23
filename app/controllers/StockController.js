@@ -30,20 +30,40 @@ exports.stocksFind = (req, res, next) => {
 exports.stocksFindAll = (req, res, next) => {
     const pageNumber = req.query?._pageNumber;
     const pageSize = req.query?._pageSize;
+    let totalPages = 0;
     let pagination = {};
     if (pageNumber && pageSize) {
         pagination = {
-            offset: pageNumber * pageSize,
-            limit: pageSize,
+            offset: (pageNumber - 1) * pageSize,
+            limit: parseInt(pageSize),
         };
+        delete req.query._pageNumber;
+        delete req.query._pageSize;
     }
 
-    Stock.findAll({
-        ...pagination,
+    Stock.findOne({
         where: req.query,
+        attributes: [
+            [sequelize.fn("COUNT", sequelize.col("status")), "totalCount"],
+        ],
     })
         .then((result) => {
-            res.send(result);
+            totalPages = result.dataValues.totalCount;
+
+            return Stock.findAll({
+                ...pagination,
+                where: req.query,
+            })
+        })
+        .then((result) => {
+            res.send({
+                data: result,
+                pageInfo: {
+                    pageNumber: parseInt(pageNumber),
+                    pageSize: parseInt(pageSize),
+                    totalPages: Math.ceil(totalPages / pageSize)
+                },
+            });
         })
         .catch((error) => {
             res.send(error);
