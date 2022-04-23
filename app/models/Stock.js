@@ -29,7 +29,7 @@ const Stock = sequelize.define('stocks', {
 		allowNull: false
 	},
 	soldAt: {
-		type: 'TIMESTAMP',
+		type: DataTypes.DATE,
 		allowNull: true,
 	},
 });
