@@ -1,15 +1,14 @@
 {
-  "name": "node-express-mysql-boilerplate",
+  "name": "inventory-app-backend",
   "version": "1.0.0",
-  "description": "A boilerplate for Node.js web applications with express and MySQL",
+  "description": "This is a small project to build backend for inventory management",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon index.js",
     "postinstall": "cp .env-example .env"
   },
-  "author": "Mangesh Ghadigaonkar",
-  "license": "ISC",
+  "author": "Vincent Hoong",
   "devDependencies": {
     "nodemon": "^2.0.4"
   },

@@ -1,4 +1,6 @@
 const Stock = require('../models/Stock');
+const sequelize = require('../../config/database');
+const { Op } = require('sequelize');
 
 exports.stocksCreate = (req, res, next) => {
     Stock.create(req.body)
@@ -74,3 +76,44 @@ exports.stocksDelete = (req, res, next) => {
             res.send(error);
         })
 }
+
+exports.stocksSummary = (req, res, next) => {
+    Stock.findAll({
+        where: req.query,
+        attributes: [
+            "status",
+            [sequelize.fn("SUM", sequelize.col("price")), "totalPrice"],
+            [sequelize.fn("COUNT", sequelize.col("status")), "totalCount"],
+        ],
+        group: "status",
+    })
+        .then((result) => {
+            res.send(result);
+        })
+        .catch((error) => {
+            res.send(error);
+        });
+};
+
+exports.stocksChart = (req, res, next) => {
+    Stock.findAll({
+        where: {
+            ...req.query,
+            soldAt: {
+                [Op.not]: null,
+            },
+        },
+        attributes: [
+            [sequelize.fn("DATE", sequelize.col("soldAt")), "date"],
+            [sequelize.fn("SUM", sequelize.col("price")), "totalPrice"],
+            [sequelize.fn("COUNT", sequelize.col("status")), "totalCount"],
+        ],
+        group: sequelize.fn("DATE", sequelize.col("soldAt")),
+    })
+        .then((result) => {
+            res.send(result);
+        })
+        .catch((error) => {
+            res.send(error);
+        });
+};

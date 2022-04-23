@@ -1,7 +1,3 @@
-# Node Web Application boilerplate
-
-A boilerplate for **Node.js** web applications. This boilerplate gives the basic stucture of application start with while bundling enough useful features so as to remove all those redundant tasks that can derail a project before it even really gets started. This boilerplate users Express with sequelize as ORM and MySQL as database.
-
 ### Prerequisites
 
 1. ```NodeJs```
@@ -10,13 +6,14 @@ A boilerplate for **Node.js** web applications. This boilerplate gives the basic
 
 ### Quick start
 
-1. Clone the repository with `git clone https://github.com/mangya/node-express-mysql-boilerplate.git <your_project_folder_name>`
+1. Clone the repository with `git clone https://github.com/VincentHoong/inventory-app-backend.git <your_project_folder_name>`
 2. Change directory to your project folder `cd <your_project_folder_name>`
 3. Install the dependencies with `npm install`
 4. Create database in MySQL.
-5. Update the your database name and credentials in the `.env` file.
-6. Run the application with `npm start` (MySQL service should be up and running).
-7. Access `http://localhost:3000` and you're ready to go!
+5. Rename `.env.example` to `.env`
+6. Update the your database name and credentials in the `.env` file.
+7. Run the application with `npm start` (MySQL service should be up and running).
+8. Access `http://localhost:3001` and you're ready to go!
 
 ### Folder Structure
 ```
@@ -53,9 +50,5 @@ A boilerplate for **Node.js** web applications. This boilerplate gives the basic
 * [mysql2](https://github.com/sidorares/node-mysql2) — MySQL client for Node.js. Required for Sequelize. 
 * [sequelize](https://github.com/sequelize/sequelize) — Sequelize is a promise-based Node.js ORM for Postgres, MySQL, MariaDB, SQLite and Microsoft SQL Server.
 
-## Readings
+## Learn More
 * [How to Architect a Node.Js Project](https://dev.to/shadid12/how-to-architect-a-node-js-project-from-ground-up-1n22)
-
-## Contributing
-
-This boilerplate is open to suggestions and contributions, documentation contributions are also welcome! 😊

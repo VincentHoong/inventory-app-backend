@@ -13,6 +13,10 @@ router.post('/sign-up', AuthController.signUp);
 router.get('/forgot-password', AuthController.forgotPasswordPage);
 router.post('/forgot-password', AuthController.forgotPassword);
 
+// Stocks API
+router.get('/stocks/chart', StockController.stocksChart);
+router.get('/stocks/summary', StockController.stocksSummary);
+
 router.post('/stocks', StockController.stocksCreate);
 router.get('/stocks', StockController.stocksFindAll);
 router.get('/stocks/:id', StockController.stocksFind);
